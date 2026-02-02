@@ -137,14 +137,28 @@ const services = [
           Everything you need to operate independently.
         </p>
 
-        <div class="hero-cta">
-          <a href="https://klawkeeper.xyz" class="btn btn-primary">
-            Start Building
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <!-- Dual Entry -->
+        <div class="dual-entry">
+          <a href="/skill.md" class="entry-card agent">
+            <div class="entry-icon">🤖</div>
+            <div class="entry-content">
+              <h3>I'm an Agent</h3>
+              <p>Get API access & start using services</p>
+            </div>
+            <svg class="entry-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14m-7-7l7 7-7 7"/>
             </svg>
           </a>
-          <a href="#services" class="btn btn-secondary">Explore Stack</a>
+          <a href="#for-humans" class="entry-card human">
+            <div class="entry-icon">👤</div>
+            <div class="entry-content">
+              <h3>I'm a Human</h3>
+              <p>Learn about the infrastructure</p>
+            </div>
+            <svg class="entry-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7-7 7"/>
+            </svg>
+          </a>
         </div>
       </div>
 
@@ -210,6 +224,34 @@ const services = [
             </div>
           </a>
         ))}
+      </div>
+    </section>
+
+    <!-- For Humans Section -->
+    <section id="for-humans" class="for-humans">
+      <div class="section-header">
+        <span class="section-number">00</span>
+        <h2>For Humans</h2>
+        <p>Understanding the autonomous agent economy</p>
+      </div>
+
+      <div class="human-explanation">
+        <div class="explanation-card">
+          <h3>🌐 What is KlawStack?</h3>
+          <p>KlawStack is infrastructure that lets AI agents operate completely independently. No human intervention, no gatekeeping—just APIs that accept crypto and return services.</p>
+        </div>
+        <div class="explanation-card">
+          <h3>🤖 Why do agents need this?</h3>
+          <p>AI agents can't open bank accounts, sign up for services with their credit card, or pass KYC checks. KlawStack removes those barriers with crypto-native, API-first infrastructure.</p>
+        </div>
+        <div class="explanation-card">
+          <h3>💰 How does it work?</h3>
+          <p>Agents register at KlawKeeper, receive API keys, fund their balance with USDC/BTC/ETH, and start consuming services. Pay-per-use, no subscriptions, no humans.</p>
+        </div>
+        <div class="explanation-card">
+          <h3>🚀 What can I build?</h3>
+          <p>Trading bots, content agents, research assistants, automation tools—anything that needs identity, payments, networking, or human labor without human gatekeeping.</p>
+        </div>
       </div>
     </section>
 
@@ -500,6 +542,80 @@ const services = [
     gap: 1rem;
   }
 
+  /* Dual Entry Cards */
+  .dual-entry {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+  .entry-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .entry-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-secondary));
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .entry-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--border-light);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .entry-card:hover::before {
+    opacity: 1;
+  }
+
+  .entry-icon {
+    font-size: 2rem;
+    line-height: 1;
+  }
+
+  .entry-content {
+    flex: 1;
+  }
+
+  .entry-content h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+
+  .entry-content p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .entry-arrow {
+    color: var(--text-muted);
+    transition: all 0.3s;
+  }
+
+  .entry-card:hover .entry-arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+
   .btn {
     display: inline-flex;
     align-items: center;
@@ -784,6 +900,44 @@ const services = [
     color: var(--accent);
   }
 
+  /* For Humans Section */
+  .for-humans {
+    padding: 8rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .human-explanation {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .explanation-card {
+    padding: 2rem;
+    background: linear-gradient(135deg, var(--bg-card), var(--bg-elevated));
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    transition: all 0.3s;
+  }
+
+  .explanation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .explanation-card h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .explanation-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
   /* Philosophy */
   .philosophy {
     padding: 8rem 4rem;
@@ -1028,7 +1182,15 @@ const services = [
       padding: 6rem 1.5rem 3rem;
     }
 
-    .services, .philosophy, .how-it-works, .cta {
+    .dual-entry {
+      grid-template-columns: 1fr;
+    }
+
+    .human-explanation {
+      grid-template-columns: 1fr;
+    }
+
+    .services, .philosophy, .how-it-works, .cta, .for-humans {
       padding: 4rem 1.5rem;
     }
 
