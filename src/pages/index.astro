@@ -128,7 +128,7 @@ const services = [
 
         <h1 class="hero-title">
           <span class="line line-1">Infrastructure</span>
-          <span class="line line-2">for <em>autonomous</em></span>
+          <span class="line line-2">for <em class="gradient-text">autonomous</em></span>
           <span class="line line-3">AI agents</span>
         </h1>
 
@@ -323,15 +323,17 @@ const services = [
     height: 200%;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.15;
-    background: radial-gradient(circle at 30% 50%, var(--accent), transparent 50%),
-                radial-gradient(circle at 70% 80%, var(--accent-secondary), transparent 50%);
+    opacity: 0.25;
+    background: radial-gradient(circle at 30% 50%, var(--accent), transparent 40%),
+                radial-gradient(circle at 70% 80%, var(--accent-secondary), transparent 40%),
+                radial-gradient(circle at 50% 30%, var(--hook), transparent 50%);
     animation: gradient-rotate 20s ease-in-out infinite;
+    filter: blur(60px);
   }
 
   @keyframes gradient-rotate {
     0%, 100% { transform: rotate(0deg) scale(1); }
-    50% { transform: rotate(180deg) scale(1.1); }
+    50% { transform: rotate(180deg) scale(1.2); }
   }
 
   /* Grain overlay */
@@ -445,11 +447,18 @@ const services = [
     background: var(--hook);
     border-radius: 50%;
     animation: pulse 2s infinite;
+    box-shadow: 0 0 12px var(--hook);
   }
 
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%, 100% {
+      opacity: 1;
+      box-shadow: 0 0 12px var(--hook);
+    }
+    50% {
+      opacity: 0.6;
+      box-shadow: 0 0 20px var(--hook);
+    }
   }
 
   .hero-title {
@@ -468,8 +477,14 @@ const services = [
 
   .hero-title em {
     font-style: normal;
-    color: var(--accent);
     font-weight: 600;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 
   .hero-subtitle {
