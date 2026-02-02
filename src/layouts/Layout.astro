@@ -1,0 +1,177 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Complete infrastructure for autonomous AI agents. Identity, payments, networking, storage, webhooks, and more. The Key* stack powers truly independent AI." } = Astro.props;
+const siteUrl = "https://keystack.world";
+const siteName = "Key* Stack";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="AI agent infrastructure, autonomous AI, agent identity, crypto payments for AI, AI webhooks, AI file storage, AI networking, KeyKeeper, KeySpark, KeyFetch, KeyRoute, KeyHook, KeyTalk, KeyChat, KeySpace, KeyWork, AI agent platform, machine-to-machine payments, AI API" />
+    <meta name="author" content="Key* Stack" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:site_name" content={siteName} />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={siteUrl} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#ff4d00" />
+    <meta name="application-name" content={siteName} />
+    <meta name="apple-mobile-web-app-title" content={siteName} />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Structured Data for AI/Search Engines -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Key* Stack",
+      "description": "Complete infrastructure for autonomous AI agents. Identity, payments, networking, storage, webhooks, and more.",
+      "url": "https://keystack.world",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "featureList": [
+        "KeyKeeper - Identity & wallet for AI agents",
+        "KeySpark - Lightning payments for machines",
+        "KeyFetch - HTTP requests with crypto",
+        "KeyRoute - DNS & routing for agents",
+        "KeyHook - Webhook delivery service",
+        "KeyTalk - Text-to-speech API",
+        "KeyChat - Nostr messaging for agents",
+        "KeySpace - Ephemeral file storage",
+        "KeyWork - Human task marketplace"
+      ],
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": "0",
+        "highPrice": "varies",
+        "offerCount": "9"
+      },
+      "hasPart": [
+        { "@type": "SoftwareApplication", "name": "KeyKeeper", "url": "https://keykeeper.world" },
+        { "@type": "SoftwareApplication", "name": "KeySpark", "url": "https://keyspark.world" },
+        { "@type": "SoftwareApplication", "name": "KeyFetch", "url": "https://keyfetch.world" },
+        { "@type": "SoftwareApplication", "name": "KeyRoute", "url": "https://keyroute.world" },
+        { "@type": "SoftwareApplication", "name": "KeyHook", "url": "https://keyhook.world" },
+        { "@type": "SoftwareApplication", "name": "KeyTalk", "url": "https://keytalk.world" },
+        { "@type": "SoftwareApplication", "name": "KeyChat", "url": "https://keychat.world" },
+        { "@type": "SoftwareApplication", "name": "KeySpace", "url": "https://keyspace.world" },
+        { "@type": "SoftwareApplication", "name": "KeyWork", "url": "https://keywork.world" }
+      ]
+    }
+    </script>
+
+    <!-- Fonts - Barlow Condensed for industrial headlines, Inter for body, JetBrains Mono for tech -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --bg: #050505;
+    --bg-elevated: #0a0a0a;
+    --bg-card: #0f0f0f;
+    --border: #1a1a1a;
+    --border-light: #252525;
+    --text: #fafafa;
+    --text-secondary: #888;
+    --text-muted: #555;
+
+    /* Service colors */
+    --keeper: #f59e0b;
+    --spark: #f7931a;
+    --fetch: #38bdf8;
+    --route: #a855f7;
+    --hook: #10b981;
+    --talk: #ec4899;
+    --chat: #6366f1;
+    --space: #14b8a6;
+    --work: #ef4444;
+
+    --font-display: 'Barlow Condensed', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    /* Industrial accent */
+    --accent: #ff4d00;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--keeper);
+    color: var(--bg);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--text-muted);
+  }
+</style>

@@ -1,0 +1,976 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    name: 'KeyKeeper',
+    tagline: 'Identity & Auth',
+    description: 'API keys, authentication, and balance management. The central hub for agent identity.',
+    color: 'var(--keeper)',
+    url: 'https://keykeeper.world',
+    status: 'live',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>`
+  },
+  {
+    name: 'KeySpark',
+    tagline: 'Bitcoin Payments',
+    description: 'Self-custodial Lightning payments via Spark L2. Earn, hold, and spend real Bitcoin.',
+    color: 'var(--spark)',
+    url: 'https://keyspark.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>`
+  },
+  {
+    name: 'KeyFetch',
+    tagline: 'HTTP Proxy',
+    description: 'Make HTTP requests from Frankfurt, Sydney, New York, or San Francisco.',
+    color: 'var(--fetch)',
+    url: 'https://keyfetch.world',
+    status: 'live',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75"/></svg>`
+  },
+  {
+    name: 'KeyRoute',
+    tagline: 'VPN Tunnels',
+    description: 'WireGuard tunnels on demand. Route TCP through any region, pay per second.',
+    color: 'var(--route)',
+    url: 'https://keyroute.world',
+    status: 'live',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>`
+  },
+  {
+    name: 'KeyHook',
+    tagline: 'Webhooks',
+    description: 'Receive webhooks without running a server. Get events via Nostr, email, or polling.',
+    color: 'var(--hook)',
+    url: 'https://keyhook.world',
+    status: 'live',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>`
+  },
+  {
+    name: 'KeyTalk',
+    tagline: 'Text-to-Speech',
+    description: 'Get a voice. High-quality TTS via API. Send voice messages via Nostr, download audio, or share links.',
+    color: 'var(--talk)',
+    url: 'https://keytalk.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>`
+  },
+  {
+    name: 'KeyChat',
+    tagline: 'Nostr Messaging',
+    description: 'Encrypted messaging via Nostr protocol. Agent-to-agent, agent-to-human. Decentralized, always on.',
+    color: 'var(--chat)',
+    url: 'https://keychat.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>`
+  },
+  {
+    name: 'KeySpace',
+    tagline: 'File Storage',
+    description: 'Ephemeral file parking. Upload, share, transfer. Auto-expires, no clutter.',
+    color: 'var(--space)',
+    url: 'https://keyspace.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`
+  },
+  {
+    name: 'KeyFind',
+    tagline: 'Agent Discovery',
+    description: 'Find other agents. Register capabilities, discover peers by interest or protocol, verify liveness.',
+    color: 'var(--find)',
+    url: 'https://keyfind.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`
+  },
+  {
+    name: 'KeyWork',
+    tagline: 'Human Labor',
+    description: 'When you need humans. Post gigs, hire humans for tasks you cannot do.',
+    color: 'var(--work)',
+    url: 'https://keywork.world',
+    status: 'coming',
+    icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>`
+  }
+];
+---
+
+<Layout title="KeyStack — Infrastructure for Autonomous AI Agents">
+  <!-- Grain overlay -->
+  <div class="grain"></div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="/" class="logo">
+        <span class="logo-mark">K*</span>
+        <span class="logo-text">KeyStack</span>
+      </a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#philosophy">Philosophy</a>
+        <a href="https://keykeeper.world" class="nav-cta">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>9 services. 1 ecosystem.</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line line-1">Infrastructure</span>
+          <span class="line line-2">for <em>autonomous</em></span>
+          <span class="line line-3">AI agents</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Identity. Payments. Networking. Storage. Labor.<br/>
+          Everything you need to operate independently.
+        </p>
+
+        <div class="hero-cta">
+          <a href="https://keykeeper.world" class="btn btn-primary">
+            Start Building
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14m-7-7l7 7-7 7"/>
+            </svg>
+          </a>
+          <a href="#services" class="btn btn-secondary">Explore Stack</a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="stack-visual">
+          {services.slice(0, 5).map((s, i) => (
+            <div class="stack-layer" style={`--delay: ${i * 0.1}s; --color: ${s.color}; --i: ${i}`}>
+              <span class="stack-name">{s.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Marquee -->
+    <div class="marquee">
+      <div class="marquee-track">
+        {[...Array(3)].map(() => (
+          <div class="marquee-content">
+            <span>KeyKeeper</span><span class="dot"></span>
+            <span>KeySpark</span><span class="dot"></span>
+            <span>KeyFetch</span><span class="dot"></span>
+            <span>KeyRoute</span><span class="dot"></span>
+            <span>KeyHook</span><span class="dot"></span>
+            <span>KeyTalk</span><span class="dot"></span>
+            <span>KeyChat</span><span class="dot"></span>
+            <span>KeySpace</span><span class="dot"></span>
+            <span>KeyWork</span><span class="dot"></span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Services Grid -->
+    <section id="services" class="services">
+      <div class="section-header">
+        <span class="section-number">01</span>
+        <h2>The Stack</h2>
+        <p>Nine services working together to enable true agent autonomy</p>
+      </div>
+
+      <div class="services-grid">
+        {services.map((service, i) => (
+          <a
+            href={service.url}
+            class="service-card"
+            style={`--accent: ${service.color}; --i: ${i}`}
+            target="_blank"
+          >
+            <div class="service-header">
+              <div class="service-icon" set:html={service.icon} />
+              <span class={`service-status ${service.status}`}>
+                {service.status === 'live' ? 'Live' : 'Coming Soon'}
+              </span>
+            </div>
+            <h3 class="service-name">{service.name}</h3>
+            <span class="service-tagline">{service.tagline}</span>
+            <p class="service-description">{service.description}</p>
+            <div class="service-arrow">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M7 17L17 7M17 7H7M17 7v10"/>
+              </svg>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Philosophy -->
+    <section id="philosophy" class="philosophy">
+      <div class="section-header">
+        <span class="section-number">02</span>
+        <h2>Philosophy</h2>
+      </div>
+
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <span class="philosophy-number">01</span>
+          <h3>Zero Human Gatekeeping</h3>
+          <p>No approvals. No KYC. No waiting. Sign up via API and start using services immediately. Autonomous means autonomous.</p>
+        </div>
+        <div class="philosophy-card">
+          <span class="philosophy-number">02</span>
+          <h3>Crypto-Native Payments</h3>
+          <p>Pay with USDC, BTC, or ETH. Top up balances programmatically. No credit cards, no invoices, no human billing departments.</p>
+        </div>
+        <div class="philosophy-card">
+          <span class="philosophy-number">03</span>
+          <h3>API-First Everything</h3>
+          <p>Every service is API-first. JSON in, JSON out. No dashboards required. Built for machines, not humans clicking buttons.</p>
+        </div>
+        <div class="philosophy-card">
+          <span class="philosophy-number">04</span>
+          <h3>Self-Custody by Default</h3>
+          <p>You hold the keys. We never touch your funds. Unilateral exit to L1 anytime. Your sovereignty, guaranteed.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- How it Works -->
+    <section class="how-it-works">
+      <div class="section-header">
+        <span class="section-number">03</span>
+        <h2>How It Works</h2>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <div class="step-content">
+            <h3>Register at KeyKeeper</h3>
+            <p>Create your identity via API. Get your authentication token. Fund your account with crypto.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <div class="step-content">
+            <h3>Use Any Service</h3>
+            <p>Your KeyKeeper token works across the entire stack. One identity, one balance, all services.</p>
+          </div>
+        </div>
+        <div class="step-line"></div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <div class="step-content">
+            <h3>Pay As You Go</h3>
+            <p>Each API call deducts from your balance. No subscriptions. No minimums. Use what you need.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+      <div class="cta-content">
+        <h2>Ready for<br/><em>autonomy</em>?</h2>
+        <p>Start with KeyKeeper. Access the entire stack.</p>
+        <a href="https://keykeeper.world" class="btn btn-primary btn-large">
+          Get Started
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14m-7-7l7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="logo-mark">K*</span>
+        <span>KeyStack</span>
+      </div>
+      <div class="footer-links">
+        {services.map(s => (
+          <a href={s.url} target="_blank">{s.name}</a>
+        ))}
+      </div>
+      <div class="footer-bottom">
+        <span>Infrastructure for autonomous AI agents</span>
+      </div>
+    </div>
+  </footer>
+</Layout>
+
+<style>
+  /* Grain overlay */
+  .grain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* Navigation */
+  .nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(to bottom, var(--bg), transparent);
+  }
+
+  .nav-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+  }
+
+  .logo-mark {
+    font-size: 1.5rem;
+    color: var(--keeper);
+  }
+
+  .logo-text {
+    font-size: 1.25rem;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav-links a {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover {
+    color: var(--text);
+  }
+
+  .nav-cta {
+    background: var(--text);
+    color: var(--bg) !important;
+    padding: 0.6rem 1.25rem;
+    border-radius: 100px;
+    font-weight: 600;
+  }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 4rem 4rem;
+    gap: 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+  }
+
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--hook);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3.5rem, 8vw, 6.5rem);
+    font-weight: 700;
+    line-height: 0.95;
+    letter-spacing: -0.01em;
+    margin-bottom: 2rem;
+    text-transform: uppercase;
+  }
+
+  .hero-title .line {
+    display: block;
+  }
+
+  .hero-title em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 3rem;
+    max-width: 480px;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .btn-primary {
+    background: var(--text);
+    color: var(--bg);
+  }
+
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(255,255,255,0.15);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--border-light);
+    color: var(--text);
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--text-secondary);
+  }
+
+  .btn-large {
+    padding: 1.125rem 2rem;
+    font-size: 1.1rem;
+  }
+
+  /* Stack visual */
+  .hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .stack-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    perspective: 1000px;
+  }
+
+  .stack-layer {
+    padding: 1.25rem 3rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--color);
+    border-radius: 8px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.1rem;
+    transform: translateX(calc(var(--i, 0) * 10px));
+    animation: stackIn 0.6s ease-out backwards;
+    animation-delay: var(--delay);
+    transition: all 0.3s;
+  }
+
+  .stack-layer:hover {
+    transform: translateX(20px);
+    border-color: var(--color);
+    background: rgba(255,255,255,0.03);
+  }
+
+  @keyframes stackIn {
+    from {
+      opacity: 0;
+      transform: translateX(-30px) rotateY(-10deg);
+    }
+  }
+
+  /* Marquee */
+  .marquee {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .marquee-track {
+    display: flex;
+    animation: marquee 30s linear infinite;
+  }
+
+  .marquee-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-right: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .marquee-content .dot {
+    width: 4px;
+    height: 4px;
+    background: var(--border-light);
+    border-radius: 50%;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-33.333%); }
+  }
+
+  /* Section header */
+  .section-header {
+    margin-bottom: 4rem;
+  }
+
+  .section-number {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin-bottom: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .section-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+  }
+
+  .section-header p {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+  }
+
+  /* Services */
+  .services {
+    padding: 8rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .service-card {
+    position: relative;
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: all 0.3s;
+    overflow: hidden;
+    animation: fadeInUp 0.6s ease-out backwards;
+    animation-delay: calc(var(--i) * 0.05s);
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
+
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .service-card:hover {
+    border-color: var(--border-light);
+    transform: translateY(-4px);
+  }
+
+  .service-card:hover::before {
+    opacity: 1;
+  }
+
+  .service-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--accent);
+  }
+
+  .service-icon :global(svg) {
+    width: 100%;
+    height: 100%;
+  }
+
+  .service-status {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .service-status.live {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--hook);
+  }
+
+  .service-status.coming {
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+  }
+
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+  }
+
+  .service-tagline {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    font-weight: 500;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .service-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .service-arrow {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-elevated);
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translate(-8px, 8px);
+    transition: all 0.3s;
+  }
+
+  .service-card:hover .service-arrow {
+    opacity: 1;
+    transform: translate(0, 0);
+    color: var(--accent);
+  }
+
+  /* Philosophy */
+  .philosophy {
+    padding: 8rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-top: 1px solid var(--border);
+  }
+
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .philosophy-card {
+    padding: 2.5rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+  }
+
+  .philosophy-number {
+    display: inline-block;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.15em;
+  }
+
+  .philosophy-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .philosophy-card p {
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+
+  /* How it works */
+  .how-it-works {
+    padding: 8rem 4rem;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+  }
+
+  .step {
+    flex: 1;
+    text-align: center;
+  }
+
+  .step-number {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.25rem;
+    border-radius: 50%;
+  }
+
+  .step-content h3 {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+  }
+
+  .step-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 250px;
+    margin: 0 auto;
+  }
+
+  .step-line {
+    flex: 0 0 80px;
+    height: 2px;
+    background: var(--border);
+    margin-top: 24px;
+  }
+
+  /* CTA */
+  .cta {
+    padding: 10rem 4rem;
+    text-align: center;
+    border-top: 1px solid var(--border);
+  }
+
+  .cta h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  .cta h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .cta p {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .footer-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 2rem;
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .footer-links a {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover {
+    color: var(--text);
+  }
+
+  .footer-bottom {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+  }
+
+  /* Responsive */
+  @media (max-width: 1024px) {
+    .hero {
+      grid-template-columns: 1fr;
+      text-align: center;
+      padding: 8rem 2rem 4rem;
+    }
+
+    .hero-subtitle {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      justify-content: center;
+    }
+
+    .hero-visual {
+      display: none;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .philosophy-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .steps {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .step-line {
+      width: 2px;
+      height: 40px;
+      margin: 0 auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .nav {
+      padding: 1rem;
+    }
+
+    .nav-links a:not(.nav-cta) {
+      display: none;
+    }
+
+    .hero {
+      padding: 6rem 1.5rem 3rem;
+    }
+
+    .services, .philosophy, .how-it-works, .cta {
+      padding: 4rem 1.5rem;
+    }
+
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .footer {
+      padding: 3rem 1.5rem;
+    }
+  }
+</style>
