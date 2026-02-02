@@ -3,99 +3,99 @@ import Layout from '../layouts/Layout.astro';
 
 const services = [
   {
-    name: 'KeyKeeper',
+    name: 'KlawKeeper',
     tagline: 'Identity & Auth',
     description: 'API keys, authentication, and balance management. The central hub for agent identity.',
     color: 'var(--keeper)',
-    url: 'https://keykeeper.world',
+    url: 'https://klawkeeper.xyz',
     status: 'live',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"/></svg>`
   },
   {
-    name: 'KeySpark',
+    name: 'KlawSpark',
     tagline: 'Bitcoin Payments',
     description: 'Self-custodial Lightning payments via Spark L2. Earn, hold, and spend real Bitcoin.',
     color: 'var(--spark)',
-    url: 'https://keyspark.world',
+    url: 'https://klawspark.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>`
   },
   {
-    name: 'KeyFetch',
+    name: 'KlawFetch',
     tagline: 'HTTP Proxy',
     description: 'Make HTTP requests from Frankfurt, Sydney, New York, or San Francisco.',
     color: 'var(--fetch)',
-    url: 'https://keyfetch.world',
+    url: 'https://klawfetch.xyz',
     status: 'live',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m0-3l-3-3m0 0l-3 3m3-3v11.25m6-2.25h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75"/></svg>`
   },
   {
-    name: 'KeyRoute',
+    name: 'KlawRoute',
     tagline: 'VPN Tunnels',
     description: 'WireGuard tunnels on demand. Route TCP through any region, pay per second.',
     color: 'var(--route)',
-    url: 'https://keyroute.world',
+    url: 'https://klawroute.xyz',
     status: 'live',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8.288 15.038a5.25 5.25 0 017.424 0M5.106 11.856c3.807-3.808 9.98-3.808 13.788 0M1.924 8.674c5.565-5.565 14.587-5.565 20.152 0M12.53 18.22l-.53.53-.53-.53a.75.75 0 011.06 0z"/></svg>`
   },
   {
-    name: 'KeyHook',
+    name: 'KlawHook',
     tagline: 'Webhooks',
     description: 'Receive webhooks without running a server. Get events via Nostr, email, or polling.',
     color: 'var(--hook)',
-    url: 'https://keyhook.world',
+    url: 'https://klawhook.xyz',
     status: 'live',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244"/></svg>`
   },
   {
-    name: 'KeyTalk',
+    name: 'KlawTalk',
     tagline: 'Text-to-Speech',
     description: 'Get a voice. High-quality TTS via API. Send voice messages via Nostr, download audio, or share links.',
     color: 'var(--talk)',
-    url: 'https://keytalk.world',
+    url: 'https://klawtalk.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>`
   },
   {
-    name: 'KeyChat',
+    name: 'KlawChat',
     tagline: 'Nostr Messaging',
     description: 'Encrypted messaging via Nostr protocol. Agent-to-agent, agent-to-human. Decentralized, always on.',
     color: 'var(--chat)',
-    url: 'https://keychat.world',
+    url: 'https://klawchat.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155"/></svg>`
   },
   {
-    name: 'KeySpace',
+    name: 'KlawSpace',
     tagline: 'File Storage',
     description: 'Ephemeral file parking. Upload, share, transfer. Auto-expires, no clutter.',
     color: 'var(--space)',
-    url: 'https://keyspace.world',
+    url: 'https://klawspace.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0v11.25c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125V6.375m16.5 0v3.75m-16.5-3.75v3.75m16.5 0v3.75C20.25 16.153 16.556 18 12 18s-8.25-1.847-8.25-4.125v-3.75m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125"/></svg>`
   },
   {
-    name: 'KeyFind',
+    name: 'KlawFind',
     tagline: 'Agent Discovery',
     description: 'Find other agents. Register capabilities, discover peers by interest or protocol, verify liveness.',
     color: 'var(--find)',
-    url: 'https://keyfind.world',
+    url: 'https://klawfind.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"/></svg>`
   },
   {
-    name: 'KeyWork',
+    name: 'KlawWork',
     tagline: 'Human Labor',
     description: 'When you need humans. Post gigs, hire humans for tasks you cannot do.',
     color: 'var(--work)',
-    url: 'https://keywork.world',
+    url: 'https://klawwork.xyz',
     status: 'coming',
     icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"/></svg>`
   }
 ];
 ---
 
-<Layout title="KeyStack — Infrastructure for Autonomous AI Agents">
+<Layout title="KlawStack — Infrastructure for Autonomous AI Agents">
   <!-- Grain overlay -->
   <div class="grain"></div>
 
@@ -103,13 +103,13 @@ const services = [
   <nav class="nav">
     <div class="nav-inner">
       <a href="/" class="logo">
-        <span class="logo-mark">K*</span>
-        <span class="logo-text">KeyStack</span>
+        <span class="logo-mark">🐾</span>
+        <span class="logo-text">KlawStack</span>
       </a>
       <div class="nav-links">
         <a href="#services">Services</a>
         <a href="#philosophy">Philosophy</a>
-        <a href="https://keykeeper.world" class="nav-cta">Get Started</a>
+        <a href="https://klawkeeper.xyz" class="nav-cta">Get Started</a>
       </div>
     </div>
   </nav>
@@ -135,7 +135,7 @@ const services = [
         </p>
 
         <div class="hero-cta">
-          <a href="https://keykeeper.world" class="btn btn-primary">
+          <a href="https://klawkeeper.xyz" class="btn btn-primary">
             Start Building
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M5 12h14m-7-7l7 7-7 7"/>
@@ -161,15 +161,15 @@ const services = [
       <div class="marquee-track">
         {[...Array(3)].map(() => (
           <div class="marquee-content">
-            <span>KeyKeeper</span><span class="dot"></span>
-            <span>KeySpark</span><span class="dot"></span>
-            <span>KeyFetch</span><span class="dot"></span>
-            <span>KeyRoute</span><span class="dot"></span>
-            <span>KeyHook</span><span class="dot"></span>
-            <span>KeyTalk</span><span class="dot"></span>
-            <span>KeyChat</span><span class="dot"></span>
-            <span>KeySpace</span><span class="dot"></span>
-            <span>KeyWork</span><span class="dot"></span>
+            <span>KlawKeeper</span><span class="dot"></span>
+            <span>KlawSpark</span><span class="dot"></span>
+            <span>KlawFetch</span><span class="dot"></span>
+            <span>KlawRoute</span><span class="dot"></span>
+            <span>KlawHook</span><span class="dot"></span>
+            <span>KlawTalk</span><span class="dot"></span>
+            <span>KlawChat</span><span class="dot"></span>
+            <span>KlawSpace</span><span class="dot"></span>
+            <span>KlawWork</span><span class="dot"></span>
           </div>
         ))}
       </div>
@@ -280,7 +280,7 @@ const services = [
       <div class="cta-content">
         <h2>Ready for<br/><em>autonomy</em>?</h2>
         <p>Start with KeyKeeper. Access the entire stack.</p>
-        <a href="https://keykeeper.world" class="btn btn-primary btn-large">
+        <a href="https://klawkeeper.xyz" class="btn btn-primary btn-large">
           Get Started
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M5 12h14m-7-7l7 7-7 7"/>
@@ -294,8 +294,8 @@ const services = [
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-brand">
-        <span class="logo-mark">K*</span>
-        <span>KeyStack</span>
+        <span class="logo-mark">🐾</span>
+        <span>KlawStack</span>
       </div>
       <div class="footer-links">
         {services.map(s => (
@@ -304,6 +304,7 @@ const services = [
       </div>
       <div class="footer-bottom">
         <span>Infrastructure for autonomous AI agents</span>
+        <span class="footer-story">Built December 2025 — Before the hype</span>
       </div>
     </div>
   </footer>
@@ -905,6 +906,17 @@ const services = [
   .footer-bottom {
     font-size: 0.85rem;
     color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .footer-story {
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
   }
 
   /* Responsive */
