@@ -4,9 +4,9 @@ interface Props {
   description?: string;
 }
 
-const { title, description = "Complete infrastructure for autonomous AI agents. Identity, payments, networking, storage, webhooks, and more. The Key* stack powers truly independent AI." } = Astro.props;
-const siteUrl = "https://keystack.world";
-const siteName = "Key* Stack";
+const { title, description = "Complete infrastructure for autonomous AI agents. Identity, payments, networking, storage, webhooks, and more. Built December 2025 — Before the hype." } = Astro.props;
+const siteUrl = "https://klawstack.xyz";
+const siteName = "KlawStack";
 ---
 
 <!doctype html>
@@ -22,7 +22,7 @@ const siteName = "Key* Stack";
     <meta name="title" content={title} />
     <meta name="description" content={description} />
     <meta name="keywords" content="AI agent infrastructure, autonomous AI, agent identity, crypto payments for AI, AI webhooks, AI file storage, AI networking, KeyKeeper, KeySpark, KeyFetch, KeyRoute, KeyHook, KeyTalk, KeyChat, KeySpace, KeyWork, AI agent platform, machine-to-machine payments, AI API" />
-    <meta name="author" content="Key* Stack" />
+    <meta name="author" content="KlawStack" />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href={siteUrl} />
 
@@ -52,9 +52,9 @@ const siteName = "Key* Stack";
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
-      "name": "Key* Stack",
+      "name": "KlawStack",
       "description": "Complete infrastructure for autonomous AI agents. Identity, payments, networking, storage, webhooks, and more.",
-      "url": "https://keystack.world",
+      "url": "https://klawstack.xyz",
       "applicationCategory": "DeveloperApplication",
       "operatingSystem": "Any",
       "featureList": [
@@ -89,10 +89,10 @@ const siteName = "Key* Stack";
     }
     </script>
 
-    <!-- Fonts - Barlow Condensed for industrial headlines, Inter for body, JetBrains Mono for tech -->
+    <!-- Fonts - Space Grotesk for headlines, DM Sans for body, IBM Plex Mono for code -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   </head>
   <body>
     <slot />
@@ -101,32 +101,33 @@ const siteName = "Key* Stack";
 
 <style is:global>
   :root {
-    --bg: #050505;
-    --bg-elevated: #0a0a0a;
-    --bg-card: #0f0f0f;
-    --border: #1a1a1a;
-    --border-light: #252525;
-    --text: #fafafa;
-    --text-secondary: #888;
-    --text-muted: #555;
+    --bg: #0a0a0f;
+    --bg-elevated: #12121a;
+    --bg-card: #1a1a24;
+    --border: #252530;
+    --border-light: #30303d;
+    --text: #f5f5f7;
+    --text-secondary: #9ca3af;
+    --text-muted: #6b7280;
 
-    /* Service colors */
+    /* Service colors - vibrant and gradient-friendly */
     --keeper: #f59e0b;
-    --spark: #f7931a;
-    --fetch: #38bdf8;
-    --route: #a855f7;
+    --spark: #f97316;
+    --fetch: #06b6d4;
+    --route: #8b5cf6;
     --hook: #10b981;
     --talk: #ec4899;
     --chat: #6366f1;
     --space: #14b8a6;
     --work: #ef4444;
 
-    --font-display: 'Barlow Condensed', sans-serif;
-    --font-body: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
+    --font-display: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
 
-    /* Industrial accent */
-    --accent: #ff4d00;
+    /* Primary accent - Moltbook-inspired */
+    --accent: #f59e0b;
+    --accent-secondary: #8b5cf6;
   }
 
   * {
